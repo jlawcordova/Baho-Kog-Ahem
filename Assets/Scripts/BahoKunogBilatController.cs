@@ -50,7 +50,6 @@ public class BahoKunogBilatController : MonoBehaviour, IGameLevel {
 					BilatGirlInstance.transform.GetChild(1).transform.GetChild(0).GetComponent<ScentGenerator>().GenerateTime = 1f;
 					break;
 			}
-            Debug.Log(BilatGirlInstance.transform.GetChild(1).transform.GetChild(0).GetComponent<ScentGenerator>().GenerateTime);
 			BilatGirlActivated = true;
 		}
 

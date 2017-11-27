@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour {
 
+	public AudioClip KnifeAudio;
 	public float XSpeed;
 	public float YSpeed;
+	private AudioSource source;
 
 	// Use this for initialization
 	void Start () {
+		source = gameObject.GetComponent<AudioSource>();
+
+		source.clip = KnifeAudio;
+		source.pitch = Random.Range(0.8f, 1f);
 		
+		source.Play();
 	}
 	
 	// Update is called once per frame

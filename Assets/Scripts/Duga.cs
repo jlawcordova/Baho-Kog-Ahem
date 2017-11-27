@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Duga : MonoBehaviour {
 
+	public AudioClip DugaAudio;
 	public bool IsLeft;
+	private AudioSource source;
 
 	// Use this for initialization
 	void Start () {
+		source = gameObject.GetComponent<AudioSource>();
+
+		source.clip = DugaAudio;
+		source.pitch = Random.Range(0.76f, 0.91f);
 		
+		source.Play();
 	}
 	
 	// Update is called once per frame

@@ -16,6 +16,7 @@ public class RestartButton : MonoBehaviour {
 	}
 
 	public void RestartClicked(){
+
 		SceneManager.LoadScene("Game");
 	}
 }
