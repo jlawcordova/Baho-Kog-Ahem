@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f64afb17a3ac583499f1e7e8bdef9815
+timeCreated: 1511690126
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gamegirl Classic
+  fontNames:
+  - Gamegirl Classic
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
