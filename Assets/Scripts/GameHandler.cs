@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour {
 
+	private int Level;
 	public GameObject[] GameLevels;
 	public GameObject Scorer;
 	private bool started;
@@ -23,6 +24,7 @@ public class GameHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Level = 1;
 		started = false;
 		trigged = false;
 		timer = 0;
@@ -35,18 +37,35 @@ public class GameHandler : MonoBehaviour {
 		if(StartTimeDuration < timer && !started)
 		{
 			gameLevel = Instantiate(GameLevels[RandomLevelNumber]);
-			gameLevel.transform.GetChild(0).GetComponent<IGameLevel>().GameLevelEnded += GameEndedEvent;
+
+			IGameLevel level = gameLevel.transform.GetChild(0).GetComponent<IGameLevel>();
+			level.GameLevelEnded += GameEndedEvent;
+
+			if(Level < 2){
+				level.DifficultyLevel = Difficulty.Easy;
+			}else if(Level < 4){
+				level.DifficultyLevel = Difficulty.Moderate;
+			}else if(Level < 6){
+				level.DifficultyLevel = Difficulty.Hard;
+			}else{
+				level.DifficultyLevel = Difficulty.Insane;
+			}
 			Scorer.GetComponent<Scorer>().Started = true;
 			started = true;
 		}
 
 		if(StartAnimationTimeDuration < timer && !trigged)
 		{
-			Debug.Log("Triggered");
 			switch (RandomLevelNumber)
 			{
 				case 0:
+					BahoGirl.GetComponent<Animator>().SetTrigger("Bilat");
+					break;
+				case 1:
 					BahoGirl.GetComponent<Animator>().SetTrigger("Duga");
+					break;
+				case 2:
+					BahoGirl.GetComponent<Animator>().SetTrigger("Anak");
 					break;
 				default:
 					BahoGirl.GetComponent<Animator>().SetTrigger("Default");
@@ -58,8 +77,8 @@ public class GameHandler : MonoBehaviour {
 	}
 
 	public void GameEndedEvent(object sender, EventArgs e){
-		Debug.Log("Ended!");
 		Destroy(gameLevel);
+		Level++;
 		BahoGirl.GetComponent<Animator>().SetTrigger("Default");		
 		started = false;
 		trigged = false;

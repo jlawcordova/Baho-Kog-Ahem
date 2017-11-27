@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: 1322d3b0f89a87b46b33b04578f01d25
-timeCreated: 1511714693
+timeCreated: 1511750162
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: BahoBody_0
     21300002: BahoBody_1
+    21300004: BahoBody_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -105,6 +106,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 51
+        y: 0
+        width: 51
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BahoBody_2
+      rect:
+        serializedVersion: 2
+        x: 102
         y: 0
         width: 51
         height: 42

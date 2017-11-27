@@ -12,7 +12,7 @@ public class Duga : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		gameObject.GetComponent<Rigidbody2D>().rotation += 0.7f * (IsLeft ? 1:-1);
 		if(gameObject.transform.position.y < -10){
 			Destroy(gameObject);

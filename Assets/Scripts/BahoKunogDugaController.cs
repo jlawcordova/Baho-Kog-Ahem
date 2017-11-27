@@ -6,7 +6,8 @@ using UnityEngine;
 public class BahoKunogDugaController : MonoBehaviour, IGameLevel {
 
 	public GameObject DugaGeneratorObject;
-	public GameObject DugaGeneratorInstance;	public float DugaGeneratorAppearTime;
+	public GameObject DugaGeneratorInstance;
+	public float DugaGeneratorAppearTime;
 	private bool DugaGeneratorActivated;
 	private bool GameLevelEndedFlag;
 	public float DugaGeneratorDurationTime;
@@ -16,8 +17,10 @@ public class BahoKunogDugaController : MonoBehaviour, IGameLevel {
 
 	public float CurrentTime;
 
-	// Use this for initialization
-	void Start () {
+    public Difficulty DifficultyLevel {get; set;}
+
+    // Use this for initialization
+    void Start () {
 		CurrentTime = 0;
 		DugaGeneratorActivated = false;
 		GameLevelEndedFlag = false;
@@ -29,6 +32,27 @@ public class BahoKunogDugaController : MonoBehaviour, IGameLevel {
 
 		if(DugaGeneratorAppearTime <= CurrentTime && !DugaGeneratorActivated){
 			DugaGeneratorInstance = Instantiate(DugaGeneratorObject, new Vector3(0.3f, -1f, 0), Quaternion.identity);
+			
+			switch (DifficultyLevel)
+			{
+				case Difficulty.Easy:
+					DugaGeneratorInstance.GetComponent<DugaGenerator>().GenerateTime = 0.37f;
+					break;
+				case Difficulty.Moderate:
+					DugaGeneratorInstance.GetComponent<DugaGenerator>().GenerateTime = 0.3f;
+					break;
+				case Difficulty.Hard:
+					DugaGeneratorInstance.GetComponent<DugaGenerator>().GenerateTime = 0.22f;
+					break;
+				case Difficulty.Insane:
+					DugaGeneratorInstance.GetComponent<DugaGenerator>().GenerateTime = 0.13f;
+					break;
+				default:
+					Debug.Log("Warning. Difficulty incorrect.");
+					DugaGeneratorInstance.GetComponent<DugaGenerator>().GenerateTime = 1f;
+					break;
+			}
+
 			DugaGeneratorActivated = true;
 		}
 

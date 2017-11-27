@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Reporter : MonoBehaviour 
 {
@@ -15,12 +16,19 @@ public class Reporter : MonoBehaviour
 	public LayerMask HitLayer;
 	#endregion
 
+	public GameObject EndPanel;
+	public GameObject[] HideEnd;
+
 	private BoxCollider2D boxCollider;
 	private SpriteRenderer spriteRenderer;
 	private Animator animator;
 
 	// Use this for initialization
 	void Start () {
+		EndPanel.transform.GetChild(6).gameObject.SetActive(false);
+		
+		Time.timeScale = 1;
+
 		boxCollider = gameObject.GetComponent<BoxCollider2D>();
 		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 		animator = gameObject.GetComponent<Animator>();
@@ -39,13 +47,15 @@ public class Reporter : MonoBehaviour
 
 		if(IsGrounded())
 		{
-			if(Input.GetAxisRaw("Horizontal") == 0)
-			{
-				animator.SetTrigger("IsIdle");
-			}else
+			// Input.GetAxisRaw("Horizontal") == 0
+			if(LeftButton.IsDown || RightButton.IsDown)
 			{
 				animator.SetTrigger("IsWalking");			
-			}
+				
+			}else
+			{
+				animator.SetTrigger("IsIdle");
+				}
 
 			if(Input.GetButton("Jump"))
 			{
@@ -56,27 +66,41 @@ public class Reporter : MonoBehaviour
 		{
 			animator.SetTrigger("IsJumping");
 		}
-		
 
-		
-
-		
-
-		if(Input.GetAxisRaw("Horizontal") > 0 && !spriteRenderer.flipX)
+		// Input.GetAxisRaw("Horizontal") > 0
+		if(LeftButton.IsDown)
 		{
-			spriteRenderer.flipX = true;
+			// spriteRenderer.flipX = true;
+			WalkLeft();
 		}
-
-		if(Input.GetAxisRaw("Horizontal") < 0 && spriteRenderer.flipX)
+		//Input.GetAxisRaw("Horizontal") < 0 && spriteRenderer.flipX
+		if(RightButton.IsDown)
 		{
-			spriteRenderer.flipX = false;
+			// spriteRenderer.flipX = false;
+			WalkRight();
 		}
-		transform.Translate(Input.GetAxisRaw("Horizontal") * Speed * Time.deltaTime, 0, 0);
+		// transform.Translate(Input.GetAxisRaw("Horizontal") * Speed * Time.deltaTime, 0, 0);
+	}
+
+	public void WalkRight(){
+		spriteRenderer.flipX = true;
+		transform.Translate(Speed * Time.deltaTime, 0, 0);
+	}
+
+	public void WalkLeft(){
+		spriteRenderer.flipX = false;
+		transform.Translate(-Speed * Time.deltaTime, 0, 0);
 	}
 
 	private void Jump()
 	{
 		gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, JumpSpeed, 0);
+	}
+
+	public void PerformJump(){
+		if(IsGrounded()){
+			gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, JumpSpeed, 0);
+		}
 	}
 
 
@@ -96,7 +120,28 @@ public class Reporter : MonoBehaviour
 
 	private void GameOver()
 	{
-		// Time.timeScale = 0;
-		SceneManager.LoadScene("Game");
+
+		Time.timeScale = 0;
+		EndPanel.transform.GetChild(0).GetComponent<Text>().text = Scorer.Score.ToString();
+
+		if(PlayerPrefs.GetInt("Hiscore") < Scorer.Score)
+		{
+			EndPanel.transform.GetChild(2).GetComponent<Text>().text = Scorer.Score.ToString();
+			PlayerPrefs.SetInt("Hiscore", Scorer.Score);
+			EndPanel.transform.GetChild(6).gameObject.SetActive(true);
+		}
+		else{
+			EndPanel.transform.GetChild(2).GetComponent<Text>().text = PlayerPrefs.GetInt("Hiscore").ToString();
+		}
+
+		foreach (GameObject item in HideEnd)
+		{
+			item.SetActive(false);
+		}
+
+		LeftButton.IsDown = false;
+		RightButton.IsDown = false;
+
+		EndPanel.GetComponent<Animator>().SetTrigger("Enter");
 	}
 }

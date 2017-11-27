@@ -5,4 +5,6 @@ using UnityEngine;
 
 public interface IGameLevel {
 	event EventHandler GameLevelEnded;
+
+    Difficulty DifficultyLevel { get; set; }
 }

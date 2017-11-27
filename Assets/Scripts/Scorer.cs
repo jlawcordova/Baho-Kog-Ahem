@@ -10,7 +10,7 @@ public class Scorer : MonoBehaviour {
 
 	private Text scoreText;
 
-	private int score;
+	public static int Score;
 
 	private float Timer;
 	public bool Started = false;
@@ -27,7 +27,7 @@ public class Scorer : MonoBehaviour {
 			Timer += Time.deltaTime;
 		}
 		
-		score = Convert.ToInt32(Timer);
-		scoreText.text = score.ToString();
+		Score = Convert.ToInt32(Timer);
+		scoreText.text = Score.ToString();
 	}
 }
