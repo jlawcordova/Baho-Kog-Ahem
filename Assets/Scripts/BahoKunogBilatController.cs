@@ -34,16 +34,16 @@ public class BahoKunogBilatController : MonoBehaviour, IGameLevel {
 			switch (DifficultyLevel)
 			{
 				case Difficulty.Easy:
-					BilatGirlInstance.transform.GetChild(1).transform.GetChild(0).GetComponent<ScentGenerator>().GenerateTime = 0.8f;
+					BilatGirlInstance.transform.GetChild(1).transform.GetChild(0).GetComponent<ScentGenerator>().GenerateTime = 0.84f;
 					break;
 				case Difficulty.Moderate:
-					BilatGirlInstance.transform.GetChild(1).transform.GetChild(0).GetComponent<ScentGenerator>().GenerateTime = 0.7f;
+					BilatGirlInstance.transform.GetChild(1).transform.GetChild(0).GetComponent<ScentGenerator>().GenerateTime = 0.75f;
 					break;
 				case Difficulty.Hard:
-					BilatGirlInstance.transform.GetChild(1).transform.GetChild(0).GetComponent<ScentGenerator>().GenerateTime = 0.6f;
+					BilatGirlInstance.transform.GetChild(1).transform.GetChild(0).GetComponent<ScentGenerator>().GenerateTime = 0.68f;
 					break;
 				case Difficulty.Insane:
-					BilatGirlInstance.transform.GetChild(1).transform.GetChild(0).GetComponent<ScentGenerator>().GenerateTime = 0.51f;
+					BilatGirlInstance.transform.GetChild(1).transform.GetChild(0).GetComponent<ScentGenerator>().GenerateTime = 0.6f;
 					break;
 				default:
 					Debug.Log("Warning. Difficulty incorrect.");

@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class StartPanel : MonoBehaviour, IPointerClickHandler {
 
+	public GameObject FadingObject;
+	public GameObject MainTextObject;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -13,7 +16,9 @@ public class StartPanel : MonoBehaviour, IPointerClickHandler {
 	
 	// Update is called once per frame
 	public void StartPanelClicked () {
-		SceneManager.LoadScene("Game");
+		MainTextObject.GetComponent<Animator>().SetTrigger("Blink");
+		gameObject.GetComponent<AudioSource>().Play();
+		FadingObject.SetActive(true);
 	}
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
