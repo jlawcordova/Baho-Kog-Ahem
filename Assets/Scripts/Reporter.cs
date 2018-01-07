@@ -63,7 +63,7 @@ public class Reporter : MonoBehaviour
 		if(IsGrounded())
 		{
 			// Input.GetAxisRaw("Horizontal") == 0
-			if(LeftButton.IsDown || RightButton.IsDown)
+			if(ControlButton.LeftIsDown || ControlButton.RightIsDown)
 			{
 				animator.SetTrigger("IsWalking");			
 				
@@ -83,13 +83,13 @@ public class Reporter : MonoBehaviour
 		}
 
 		// Input.GetAxisRaw("Horizontal") > 0
-		if(LeftButton.IsDown)
+		if(ControlButton.LeftIsDown)
 		{
 			// spriteRenderer.flipX = true;
 			WalkLeft();
 		}
 		//Input.GetAxisRaw("Horizontal") < 0 && spriteRenderer.flipX
-		if(RightButton.IsDown)
+		if(ControlButton.RightIsDown)
 		{
 			// spriteRenderer.flipX = false;
 			WalkRight();
@@ -168,8 +168,9 @@ public class Reporter : MonoBehaviour
 			item.SetActive(false);
 		}
 
-		LeftButton.IsDown = false;
-		RightButton.IsDown = false;
+		ControlButton.IsDown = false;
+		ControlButton.LeftIsDown = false;
+		ControlButton.RightIsDown = false;
 
 		EndPanel.GetComponent<Animator>().SetTrigger("Enter");
 	}

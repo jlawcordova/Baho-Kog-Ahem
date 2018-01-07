@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 146b06cc5a4c18c4e90817b0cd111746
-timeCreated: 1515312888
+guid: fe41572e9f8f3774fbeec81cb5bfcf00
+timeCreated: 1515315059
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: button_normal_0
-    21300002: button_normal_1
-    21300004: button_normal_2
+    21300000: button_normal2_0
+    21300002: button_normal2_1
+    21300004: button_normal2_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -89,12 +89,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: button_normal_0
+      name: button_normal2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
+        width: 33
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -102,12 +102,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_normal_1
+      name: button_normal2_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 33
         y: 0
-        width: 16
+        width: 33
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,12 +115,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: button_normal_2
+      name: button_normal2_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 66
         y: 0
-        width: 16
+        width: 33
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}

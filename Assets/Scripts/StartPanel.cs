@@ -23,6 +23,14 @@ public class StartPanel : MonoBehaviour, IPointerClickHandler {
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
-        StartPanelClicked ();
+        StartPanelClicked();
     }
+
+	void Update () {
+		for (int i = 0; i < Input.touchCount; ++i) {
+			if (Input.GetTouch(i).phase.Equals(TouchPhase.Began)) {
+				StartPanelClicked();
+		   }
+	   }
+	}
 }
